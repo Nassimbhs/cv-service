@@ -22,6 +22,7 @@ public class TacheAtraiterConverter {
         dto.setEmailResponsable(tacheAtraiter.getEmailResponsable());
         dto.setApprobation(tacheAtraiter.getApprobation());
         dto.setResponsable(tacheAtraiter.getResponsable());
+        dto.setCreationDate(tacheAtraiter.getCreationDate());
         return dto;
     }
 

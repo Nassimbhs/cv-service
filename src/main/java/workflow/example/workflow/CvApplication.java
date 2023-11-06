@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableEurekaClient
-public class WorkflowApplication {
+public class CvApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WorkflowApplication.class, args);
+		SpringApplication.run(CvApplication.class, args);
 	}
 
 }
