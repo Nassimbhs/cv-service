@@ -8,10 +8,10 @@
 		<version>2.5.3</version>
 		<relativePath/>
 	</parent>
-	<groupId>Workflow.example</groupId>
-	<artifactId>Workflow</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Workflow</name>
+	<groupId>cv.example</groupId>
+	<artifactId>cv</artifactId>
+	<version>1.0</version>
+	<name>cv</name>
 	<description>Moteur de worfklow</description>
 	<properties>
 		<java.version>11</java.version>
