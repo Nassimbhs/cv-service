@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import workflow.example.workflow.dto.CvDto;
 import workflow.example.workflow.entity.Cv;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,14 +1,22 @@
 package workflow.example.workflow.entity;
 
-import javax.persistence.*;
 import lombok.*;
+import org.hibernate.Hibernate;
 import workflow.example.workflow.listener.TacheListener;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @EntityListeners(TacheListener.class)
 public class Tache implements Serializable {
 
@@ -27,6 +35,7 @@ public class Tache implements Serializable {
     private Workflow workflowTache;
 
     @OneToMany(mappedBy = "tacheLien", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<LienTache> lienTaches = new ArrayList<>();
 
     @ManyToMany
@@ -35,9 +44,23 @@ public class Tache implements Serializable {
             joinColumns = @JoinColumn(name = "tache_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    @ToString.Exclude
     private List<User> userList = new ArrayList<>();
 
     @OneToMany(mappedBy = "tacheAtraite", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<TacheAtraiter> tacheAtraiters = new ArrayList<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Tache tache = (Tache) o;
+        return getId() != null && Objects.equals(getId(), tache.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

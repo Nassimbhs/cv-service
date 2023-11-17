@@ -3,7 +3,6 @@ package workflow.example.workflow.converter;
 import org.springframework.stereotype.Component;
 import workflow.example.workflow.dto.CompetenceDto;
 import workflow.example.workflow.entity.Competence;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

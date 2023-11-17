@@ -1,5 +1,6 @@
 package workflow.example.workflow.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -14,17 +15,12 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CvService {
     private final CvRepository cvRepository;
     private final TacheAtraiterRepository tacheAtraiterRepository;
 
     private final WebClient webClient;
-
-    public CvService(WebClient.Builder webClientBuilder, CvRepository cvRepository, TacheAtraiterRepository tacheAtraiterRepository) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8091").build();
-        this.cvRepository = cvRepository;
-        this.tacheAtraiterRepository = tacheAtraiterRepository;
-    }
 
     public Cv createCV(Cv cv, Long tacheAtraiterId) {
         TacheAtraiter tacheAtraiter = webClient

@@ -13,7 +13,7 @@ public class InteretConverter {
     public InteretDto entityToDto(Interet interet){
         InteretDto dto = new InteretDto();
         dto.setId(interet.getId());
-        dto.setInteret(interet.getInteret());
+        dto.setNom(interet.getNom());
         return dto;
     }
 

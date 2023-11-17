@@ -1,11 +1,14 @@
 package workflow.example.workflow.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class WorkflowDto {
 
@@ -24,5 +27,5 @@ public class WorkflowDto {
     private String tacheAecouter;
     private String evenement;
 
-    private List<TacheDto> tacheDtoList = new ArrayList<TacheDto>();
+    private List<TacheDto> tacheDtoList = new ArrayList<>();
 }

@@ -1,12 +1,18 @@
 package workflow.example.workflow.entity;
 
-import javax.persistence.*;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 public class Formation implements Serializable {
     @Id
@@ -18,4 +24,17 @@ public class Formation implements Serializable {
     private Date dateFin;
     @ManyToOne
     private Cv cv;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Formation formation = (Formation) o;
+        return getId() != null && Objects.equals(getId(), formation.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

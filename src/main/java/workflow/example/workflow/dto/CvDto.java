@@ -1,9 +1,13 @@
 package workflow.example.workflow.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class CvDto {
 
@@ -17,10 +21,10 @@ public class CvDto {
     private String ville;
     private Long workflow;
 
-    private List<FormationDto> formationDtos = new ArrayList<FormationDto>();
-    private List<CompetenceDto> competenceDtos = new ArrayList<CompetenceDto>();
-    private List<LangueDto> langueDtos = new ArrayList<LangueDto>();
-    private List<InteretDto> interetDtos = new ArrayList<InteretDto>();
-    private List<ExperienceDto> experienceDtos = new ArrayList<ExperienceDto>();
+    private List<FormationDto> formationDtos = new ArrayList<>();
+    private List<CompetenceDto> competenceDtos = new ArrayList<>();
+    private List<LangueDto> langueDtos = new ArrayList<>();
+    private List<InteretDto> interetDtos = new ArrayList<>();
+    private List<ExperienceDto> experienceDtos = new ArrayList<>();
 
 }

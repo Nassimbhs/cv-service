@@ -1,12 +1,18 @@
 package workflow.example.workflow.entity;
 
-import javax.persistence.*;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class LienTache implements Serializable {
 
     @Id
@@ -22,4 +28,17 @@ public class LienTache implements Serializable {
 
     @ManyToOne
     private Tache tacheLien;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        LienTache lienTache = (LienTache) o;
+        return getId() != null && Objects.equals(getId(), lienTache.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

@@ -1,11 +1,17 @@
 package workflow.example.workflow.entity;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 public class Competence implements Serializable {
     @Id
@@ -14,4 +20,17 @@ public class Competence implements Serializable {
     private String nomCompetence;
     @ManyToOne
     private Cv cv;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Competence that = (Competence) o;
+        return getId() != null && Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

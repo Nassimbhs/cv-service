@@ -1,17 +1,21 @@
 package workflow.example.workflow.entity;
 
-import javax.persistence.*;
 import lombok.*;
+import org.hibernate.Hibernate;
 import workflow.example.workflow.listener.WorkflowListener;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import java.util.Objects;
 
 @Entity
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @EntityListeners(WorkflowListener.class)
 public class Workflow implements Serializable {
 
@@ -33,6 +37,19 @@ public class Workflow implements Serializable {
     private String evenement;
 
     @OneToMany(mappedBy = "workflowTache", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Tache> taches = new ArrayList<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        var workflow = (Workflow) o;
+        return getId() != null && Objects.equals(getId(), workflow.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

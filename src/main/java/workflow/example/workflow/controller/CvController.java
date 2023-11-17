@@ -1,6 +1,7 @@
 package workflow.example.workflow.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +14,13 @@ import workflow.example.workflow.service.CvService;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/Cv")
 @Tag(name = "Cv", description = "CRUD Cv")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CvController {
-    @Autowired
-    private CvService cvService;
-    @Autowired
-    private CvConverter cvConverter;
+    private final CvService cvService;
+    private final CvConverter cvConverter;
 
     @PostMapping("/{tacheAtraiterId}")
     public ResponseEntity<CvDto> createCv(@RequestBody Cv cv, @PathVariable Long tacheAtraiterId) {
@@ -31,10 +31,10 @@ public class CvController {
 
     @GetMapping("/getCv/{id}")
     public ResponseEntity<CvDto> getCvById(@PathVariable Long id) {
-        Cv cv = cvService.getCvById(id)
+        var cv = cvService.getCvById(id)
                 .orElse(null);
         if (cv != null) {
-            CvDto cvDto = cvConverter.entityToDto(cv);
+            var cvDto = cvConverter.entityToDto(cv);
             return ResponseEntity.ok(cvDto);
         } else {
             return ResponseEntity.notFound().build();
@@ -45,8 +45,8 @@ public class CvController {
             @PathVariable Long cvId,
             @PathVariable Long tacheAtraiterId
     ) {
-        Cv cv = cvService.assignCvToTacheAtraiter(cvId, tacheAtraiterId);
-        CvDto cvDto = cvConverter.entityToDto(cv);
+        var cv = cvService.assignCvToTacheAtraiter(cvId, tacheAtraiterId);
+        var cvDto = cvConverter.entityToDto(cv);
         if (cvDto != null) {
             return ResponseEntity.status(HttpStatus.OK).body(cvDto);
         } else {
@@ -72,7 +72,7 @@ public class CvController {
     public ResponseEntity<CvDto> getCvWithCompetencesAndFormations(
             @PathVariable Long tacheAtraiterId) {
 
-        CvDto cvDto = cvConverter.entityToDto(cvService.getCvWithCompetencesAndFormations(tacheAtraiterId));
+        var cvDto = cvConverter.entityToDto(cvService.getCvWithCompetencesAndFormations(tacheAtraiterId));
         if (cvDto == null) {
             return ResponseEntity.notFound().build();
         }

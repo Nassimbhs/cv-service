@@ -1,12 +1,15 @@
 package workflow.example.workflow.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class TacheDto implements Serializable {
 
@@ -21,8 +24,7 @@ public class TacheDto implements Serializable {
     private String action;
     private String approbation;
 
-    private List<LienTacheDto> lienTacheDtos = new ArrayList<LienTacheDto>();
-    //private List<UserDto> userDtoList = new ArrayList<UserDto>();
-    private List<TacheAtraiterDto> tacheAtraiterDtos = new ArrayList<TacheAtraiterDto>();
+    private List<LienTacheDto> lienTacheDtos = new ArrayList<>();
+    private List<TacheAtraiterDto> tacheAtraiterDtos = new ArrayList<>();
 
 }
